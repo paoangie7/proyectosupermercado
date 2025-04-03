@@ -31,7 +31,7 @@
                         <td><span class="badge bg-primary">${{ number_format($detalle->precio_total, 2) }}</span></td>
                         <td>
                             @if($detalle->producto->imagen)
-                                <img src="{{ asset('storage/' . $detalle->producto->imagen) }}" class="img-thumbnail" width="50" alt="Imagen del Producto">
+                                <img src="{{ asset('storage/' . $detalle->producto->imagen) }}" class="img-thumbnail" width="100" alt="Imagen del Producto">
                             @else
                                 <span class="text-muted">No tiene imagen</span>
                             @endif

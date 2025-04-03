@@ -48,14 +48,6 @@
             <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
           </div>
 
-          <!-- Opciones de inicio de sesión con redes sociales -->
-          <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!" role="button">
-            <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
-          </a>
-          <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!" role="button">
-            <i class="fab fa-twitter me-2"></i>Continue with Twitter
-          </a>
-
           <!-- Enlace de registro -->
           <p class="mt-3 text-center">¿Eres nuevo? <a href="{{ route('register') }}">Regístrate aquí</a></p>
         </form>

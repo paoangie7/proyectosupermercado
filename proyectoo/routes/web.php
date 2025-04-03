@@ -13,10 +13,11 @@ use App\Http\Controllers\MetodoPagoController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\ProductoInactivoController;
 
-// Ruta inicial que redirige al login si no está autenticado
+
 Route::get('/', function () {
-    return redirect()->route('login');  // Redirige a login si no estás autenticado
+    return redirect()->route('login');  
 });
 
 // Rutas de autenticación
@@ -69,7 +70,6 @@ use Illuminate\Http\Request;
 Route::resource('ventas', VentaController::class);
 
 Route::get('productos/create', [ProductoController::class, 'create'])->name('productos.create');
-// routes/web.php
 
 Route::get('/reportes/productos-mas-vendidos', [VentaController::class, 'productosMasVendidos'])->name('reportes.productos_mas_vendidos');
 use App\Http\Controllers\ReporteController;
@@ -80,3 +80,13 @@ Route::get('compras/{compra}/edit', [CompraController::class, 'edit'])->name('co
 
 
 Route::resource('metodos_pago', MetodoPagoController::class);
+Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
+Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
+Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
+Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
+Route::put('/productos/{id}/dar-de-baja', [ProductoController::class, 'darDeBaja'])->name('productos.darDeBaja');
+Route::put('/productos/{id}/activar', [ProductoController::class, 'activarProducto'])->name('productos.activar');
+Route::resource('productos', ProductoController::class)->only(['index', 'create', 'store']);
+Route::put('/productos/{id}/activar', [ProductoController::class, 'activarProducto'])->name('productos.activar');
+Route::resource('productos', ProductoController::class)->except(['show']);
+

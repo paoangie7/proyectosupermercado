@@ -35,7 +35,7 @@
                         <td>
                             <!-- Mostrar imagen del producto si existe -->
                             @if($inventario->producto->imagen)
-                                <img src="{{ asset('storage/' . $inventario->producto->imagen) }}" width="50" alt="Imagen del Producto">
+                                <img src="{{ asset('storage/' . $inventario->producto->imagen) }}" width="100" alt="Imagen del Producto">
                             @else
                                 No tiene imagen
                             @endif

@@ -36,6 +36,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('compras.index') }}">Compras</a>
                     </li>
+                    
                 </ul>
                 <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                     <li class="nav-item dropdown">
@@ -44,6 +45,7 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#!">Configuraciones</a></li>
                             <li><a class="dropdown-item" href="#!">Registro de Actividad</a></li>
+                            
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>

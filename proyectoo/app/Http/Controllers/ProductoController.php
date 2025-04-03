@@ -11,12 +11,18 @@ class ProductoController extends Controller
 {
     public function index(Request $request)
     {
+        // Búsqueda de productos activos
         $search = $request->query('search');
-        $productos = $search 
-            ? Producto::where('nombre', 'like', "%{$search}%")->get()
-            : Producto::all();
+        $productos = Producto::where('activo', true)
+            ->when($search, function ($query, $search) {
+                return $query->where('nombre', 'like', "%{$search}%");
+            })
+            ->get();
 
-        return view('productos.index', compact('productos', 'search'));
+        // Obtener productos inactivos (dados de baja)
+        $productosInactivos = Producto::where('activo', false)->get();
+
+        return view('productos.index', compact('productos', 'search', 'productosInactivos'));
     }
 
     public function create()
@@ -95,16 +101,19 @@ class ProductoController extends Controller
         return redirect()->route('productos.index')->with('success', 'Producto actualizado correctamente');
     }
 
-    public function destroy($id)
+    public function darDeBaja($id)
     {
         $producto = Producto::findOrFail($id);
+        $producto->update(['activo' => false]);
 
-        if ($producto->imagen) {
-            Storage::disk('public')->delete($producto->imagen);
-        }
+        return redirect()->route('productos.index')->with('success', 'Producto dado de baja correctamente');
+    }
 
-        $producto->delete();
+    public function activarProducto($id)
+    {
+        $producto = Producto::findOrFail($id);
+        $producto->update(['activo' => true]);
 
-        return redirect()->route('productos.index')->with('success', 'Producto eliminado correctamente');
+        return redirect()->route('productos.index')->with('success', 'Producto reactivado correctamente');
     }
 }
